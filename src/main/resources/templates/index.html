@@ -153,11 +153,13 @@
 		
 		//カートに入れた際にカート表とかぶりがあれば更新する
 		cartList.forEach(cart => {
-			if (cart.id == goodsInfo.id && cart.count != goodsInfo.count) {
-				cart.count = tdList.item(3).querySelector("input").value
-				cartList.pop();
-			}
-		})
+			if (cart.id == goodsInfo.id) {
+				cart.count = goodsInfo.count;
+				if(cartList.indexOf(cart) != cartList.indexOf(goodsInfo)) {
+				cartList.pop();	
+				}
+			} 
+		});
 		
 		//カート表はゼロから再構築するため、tbody内の要素をクリアする
 		initCart();
