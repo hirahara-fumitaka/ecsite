@@ -153,11 +153,9 @@
 		
 		//カートに入れた際にカート表とかぶりがあれば更新する
 		cartList.forEach(cart => {
-			if (cart.id == goodsInfo.id) {
+			if (cart.id == goodsInfo.id && cartList.indexOf(cart) != cartList.indexOf(goodsInfo)) {
 				cart.count = goodsInfo.count;
-				if(cartList.indexOf(cart) != cartList.indexOf(goodsInfo)) {
-				cartList.pop();	
-				}
+				cartList.pop();
 			} 
 		});
 		
