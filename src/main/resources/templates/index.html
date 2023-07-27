@@ -148,11 +148,16 @@
 			return;//注文数が0ならばここでaddCart関数の終了
 		}
 		
-		//カートに入れた際にカート表とかぶりがあれば更新する
-		cartList = cartList.filter((item) => item.id != tdList.item(0).innerText)
-		
 		//グローバル変数cartListに対して、カート追加対象の商品情報をpushする
 		cartList.push(goodsInfo);
+		
+		//カートに入れた際にカート表とかぶりがあれば更新する
+		cartList.forEach(cart => {
+			if (cart.id == goodsInfo.id && cart.count != goodsInfo.count) {
+				cart.count = tdList.item(3).querySelector("input").value
+				cartList.pop();
+			}
+		})
 		
 		//カート表はゼロから再構築するため、tbody内の要素をクリアする
 		initCart();
